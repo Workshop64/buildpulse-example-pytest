@@ -6,4 +6,4 @@ install:
   - pip install pipenv
   - pipenv install
 
-script: pipenv run pytest
+script: pipenv run pytest --junitxml=test-results/junit.xml
