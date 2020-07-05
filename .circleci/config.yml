@@ -1,11 +1,16 @@
 version: 2.1
 
+orbs:
+  buildpulse: workshop64/buildpulse@0.3
+
 jobs:
   build:
     docker:
       - image: circleci/python:3.8
     steps:
       - checkout
+
+      - buildpulse/setup # Set up BuildPulse connection *before* running the test suite
 
       - restore_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
@@ -24,3 +29,8 @@ jobs:
       - run:
           name: Run tests
           command: pipenv run pytest --junitxml=test-results/junit.xml
+
+      - buildpulse/upload:
+          path: test-results
+          account-id: 68192324 # Replace this value with your BuildPulse account ID
+          repository-id: 277378874 # Replace this value with your BuildPulse repository ID
