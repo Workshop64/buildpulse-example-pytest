@@ -9,3 +9,7 @@ If you have an existing pytest project building on CircleCI, this [diff](https:/
 ## GitHub Actions CI Integration
 
 If you have an existing pytest project building on GitHub Actions CI, this [diff](https://github.com/Workshop64/buildpulse-example-pytest/compare/2cfa4fc...github-actions) shows how to set up your GitHub Actions workflow to send test results to BuildPulse.
+
+## Travis CI Integration
+
+If you have an existing pytest project building on Travis CI, this [diff](https://github.com/Workshop64/buildpulse-example-pytest/compare/9c225a5...travis-ci) shows how to set up your `.travis.yml` to send test results to BuildPulse.
