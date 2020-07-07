@@ -7,3 +7,9 @@ install:
   - pipenv install
 
 script: pipenv run pytest --junitxml=test-results/junit.xml
+
+after_script:
+  # Upload test results to BuildPulse for flaky test detection
+  - curl -fsSL https://github.com/buildpulse/test-reporter/releases/latest/download/test-reporter-linux-amd64 > ./buildpulse-test-reporter
+  - chmod +x ./buildpulse-test-reporter
+  - ./buildpulse-test-reporter submit test-results --account-id 68192324 --repository-id 277378874 # Replace IDs with your BuildPulse account ID and repository ID
